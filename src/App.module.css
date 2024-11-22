@@ -40,7 +40,8 @@
 .read-the-docs {
   color: #888;
 }
-
-.btn{
-  color: red;
+#btn {
+  background-color: red;
+  padding: 32px 48px;
+  border-radius: 12px;
 }
