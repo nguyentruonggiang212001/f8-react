@@ -108,28 +108,82 @@ import Footer from "./components/footer/Footer.jsx";
 // 	return <h2>Noi dung component A</h2>;
 // }
 
-function App(){
-  const[product,setProducts] = useState([]);
-  useEffect(()=>{
-    fetch("https://localhost:3000/products")
-    .then((res)=>res.json())
-    .then((data)=>{
-      console.log(data);
-      setProducts(data);
-    })
-  })
+function ProductList() {
+	useEffect(() => {
+		console.log("trong useEffect");
+		return () => {
+			console.log("trong return cua useEffect");
+			// function dọn dẹp ngay trước khi component ProductList được unmounting
+		};
+	}, []);
+	return <h1>Danh sach san pham</h1>;
+}
 
-  return(
-   <>
+function App() {
+	const [count, setCount] = useState(0);
+	const [showProducts, setShowProducts] = useState(false);
+
+	// useEffect(() => {
+	// 	console.log("trong useEffect");
+	// 	return () => {
+	// 		console.log("trong return của useEffect");
+	// 	};
+	// }, [count]);
+
+	// console.log("trong App");
+
+	return (
+		<>
 			<Header />
-			<h1>Hello</h1>
-      <button className="btn btn-primary" onClick={() => setShow(!show)}>
-				Toggle
+			<button
+				onClick={() => {
+					setCount(count + 1);
+				}}
+			>
+				Tăng
 			</button>
+			{count}
+
+			<button
+				onClick={() => {
+					setShowProducts(!showProducts);
+				}}
+			>
+				Toogle Products
+			</button>
+
+			{showProducts && <ProductList />}
 			<Footer />
 		</>
-  )
+	);
 }
+
+
+
+
+// function App(){
+//   const[product,setProducts] = useState([]);
+//   useEffect(()=>{
+//     fetch("https://localhost:3000/products")
+//     .then((res)=>res.json())
+//     .then((data)=>{
+//       console.log(data);
+//       setProducts(data);
+//     })
+//   })
+
+//   return(
+//    <>
+// 			<Header />
+// 			<h1>Danh mục sản phẩm</h1>
+
+//       <button className="btn btn-primary" onClick={() => setShow(!show)}>
+// 				Toggle
+// 			</button>
+// 			<Footer />
+// 		</>
+//   )
+// }
 
 
 
