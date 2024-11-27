@@ -1,10 +1,7 @@
-import Courses from "./Components/Courses.jsx";
 import './App.module.css'
 import Header from "./Components/Header.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Shop from "./pages/Shop.jsx";
-
-
 
 
 

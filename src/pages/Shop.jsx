@@ -32,15 +32,19 @@ const Shop = () => {
 		}
 	};
     const handlePrev = () => {
-    if (page > 1) {
-    setPage(page - 1);
-    setSkip(skip - limit);
-     }
+    setPage((prev) => {
+        if (prev > 1) return prev - 1;
+        return prev;
+    });
+    setSkip((prev) => {
+        if (prev > 0) return prev - 10;
+        return prev;
+    });
     };
 
     const handleNext = () => {
-    setPage(page + 1);
-    setSkip(skip + limit);
+    setPage((prev) => prev + 1);
+    setSkip((prev) => prev + 10);
     };
 
 	const handleSearch = (e) => {
@@ -61,13 +65,13 @@ const Shop = () => {
            
         <div className="productlist ">
 			{products.map((item) => (
-				<div className="prouduct" key={item.id}>
+				<div className="product" key={item.id}>
 					<img src={item.thumbnail} alt={item.title} />
 					<span>{item.id}</span>
 					<h3>{item.title}</h3>
 					<p>Giá: {item.price}</p>
 					<a href="" className="btn btn-danger">
-						Xem chi tiết
+						
 					</a>
 				</div>
 			))}
