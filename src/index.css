@@ -11,7 +11,13 @@
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 #root {
@@ -90,17 +96,17 @@ header {
     width: 100%;
     background: rgb(248, 241, 228);
     top: 0;
-    height: 60px; 
- 
+    height: 60px;
+
 }
 
 .logo img {
-    width: 200px;
+    width: 120px;
 }
 
 ul {
     display: flex;
-    margin-bottom: 28px;
+
     justify-content: space-around;
     gap: 193px;
     list-style: none;
@@ -178,6 +184,111 @@ button {
     margin: 0 100px;
 }
 
-.active{
+/*Footer*/
+.footer-last {
+    position: relative;
+    display: flex;
+    background-color: rgb(0, 0, 0);
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0px;
+    bottom: 0;
+    width: 100%;
+}
+
+.active {
     color: red;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+}
+
+thead th {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.action-buttons {
+    display: inline-flex;
+    gap: 0;
+    margin: 0px;
+}
+
+.action-buttons button:first-child {
+    margin-left: 5px;
+}
+
+.action-buttons button:last-child {
+    margin-right: 5px;
+}
+
+/*Update*/
+.form-update {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 8px;
+    width: 400px;
+    margin: 50px auto;
+    border: 1px solid black;
+}
+
+.header-update {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    margin: 0 auto 15px;
+
+
+}
+
+textarea {
+    resize: none;
+}
+
+.btn-update {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+}
+
+.btn-update:hover {
+    background-color: #0056b3;
 }
