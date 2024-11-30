@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3000",
+  // baseURL: "http://localhost:3000",
+  baseURL: "https://giang-json-server.onrender.com",
   headers: {
     "Content-Type": "application/json",
   },
@@ -37,7 +38,7 @@ export const deleteById = async (path, id) => {
 
 export const create = async (path, data) => {
   try {
-    const res = await instance.create(`${path}/${data}`);
+    const res = await instance.post(`${path}`, data);
     return res;
   } catch (error) {
     console.log(error);
@@ -46,7 +47,7 @@ export const create = async (path, data) => {
 
 export const updateById = async (path, id, data) => {
   try {
-    const res = await instance.update(`${path}/${id}/${data}`);
+    const res = await instance.put(`${path}/${id}`, data);
     return res;
   } catch (error) {
     console.log(error);

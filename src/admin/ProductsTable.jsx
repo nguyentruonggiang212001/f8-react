@@ -1,10 +1,7 @@
 import  { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../index.css";
 import { deleteById, fetchProducts } from "../axios";
-
-
-
 
 const ProductsTable = () => {
   const [dataList, setDataList] = useState([]);
@@ -16,18 +13,23 @@ const ProductsTable = () => {
       })()
   }, []);
 
-   function handleRemove(id) {
-    if (confirm('Bạn có chắc  muốn xóa sản phẩm chứ?')) {
-     deleteById('/products',id)
-     const newProducts= dataList.filter((item)=>item.id !== id)
-     setDataList(newProducts)
+  async function handleRemove(id) {
+  if (confirm('Bạn có chắc muốn xóa sản phẩm chứ?')) {
+    const res = await deleteById('/products', id);
+    console.log(res);
+    if (res.status === 200) {
+      const newProducts = dataList.filter(item => item.id !== id);
+      setDataList(newProducts);
+    } else {
+      console.log("Error!");
     }
-  };
+  }
+ }
   return (
     <div>
       <h2 style={{marginTop:"100px"}}>Quản Lý Sản Phẩm</h2>
       <div>
-       <NavLink to={"/admin/products/addProduct"}><button>AddProduct</button></NavLink>
+       <Link to={`/admin/products/add`}><button>Add new product</button></Link>
       </div>
       <table>
         <thead>
@@ -49,9 +51,9 @@ const ProductsTable = () => {
               <td>
                 <div className="action-buttons">
                 <button style={{ background: "red" }} onClick={() => handleRemove(item.id)}>Remove</button>
-                <NavLink to={"/admin/products/update"}>
+                <Link to={`/admin/products/update/${item.id}`}>
                 <button style={{ background: "yellow", color: "black" }}>Update</button>
-                </NavLink>
+                </Link>
                 </div>
               </td>
             </tr>
