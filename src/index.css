@@ -1,3 +1,4 @@
+
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     line-height: 1.5;
@@ -108,7 +109,7 @@ ul {
     display: flex;
 
     justify-content: space-around;
-    gap: 193px;
+    gap: 100px;
     list-style: none;
 }
 
@@ -181,7 +182,6 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
-    margin: 0 100px;
 }
 
 /*Footer*/
@@ -261,6 +261,7 @@ label {
 
 input[type="text"],
 input[type="number"],
+input[type="email"],
 textarea {
     width: 100%;
     padding: 10px;
