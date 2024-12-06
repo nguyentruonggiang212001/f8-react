@@ -12,7 +12,6 @@ const ProductsTable = () => {
         setDataList(data)
       })()
   }, []);
-
   async function handleRemove(id) {
   if (confirm('Bạn có chắc muốn xóa sản phẩm chứ?')) {
     const res = await deleteById('/products', id);

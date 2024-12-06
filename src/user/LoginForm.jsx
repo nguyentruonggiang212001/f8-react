@@ -16,18 +16,18 @@ const LoginForm = () => {
 	} = useForm(
     {resolver:zodResolver(loginSchema),}
   );
-
     const handleLogin = async (dataBody) => {
     const data = await authRequest("/login", dataBody);
     console.log(data);
     if(data.accessToken && confirm("Đăng nhập thành công bạn có muốn về trang chủ không ?")){
       localStorage.setItem("accessToken",data.accessToken)
       localStorage.setItem("email",data?.user?.email)
+      localStorage.setItem("role",data?.user?.role)
+    
      Nav("/")
     }else{
       reset();
     }
-   
   };
   return (
        <div className="form-update">
@@ -42,7 +42,6 @@ const LoginForm = () => {
           {...register("email",{required:true})}    
         />
         {errors.email && <p style={{color:"red"}}>{errors.email?.message}</p>}
-
         <label htmlFor="Password">Password</label>
         <input
           type="text"
@@ -61,7 +60,6 @@ const LoginForm = () => {
           <button type="submit" style={{backgroundColor:"blue",width:"100%"}}>
           Login
         </button>
-        
         </div>
       </form>
     </div>

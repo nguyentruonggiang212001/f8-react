@@ -1,6 +1,6 @@
 import {NavLink } from 'react-router-dom';
-import logo from '../Components/icontokyo-Photoroom.png';
-import '../index.css';
+import logo from '../Header/icontokyo-Photoroom.png';
+import '../../index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 

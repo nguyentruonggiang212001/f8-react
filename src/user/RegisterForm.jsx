@@ -18,7 +18,7 @@ export const RegisterForm = () => {
    const handleRegisterUser = async (dataBody) => {
       const data = await authRequest("/register", dataBody);
       if(data.user && confirm("Đăng nhập ngay ?"))
-      Nav("/user/login")
+        Nav("/user/login")
       else{
         reset();
       }
@@ -34,37 +34,34 @@ export const RegisterForm = () => {
           name="email"
           id="email"
           placeholder="Email"
-          {...register("email")}    
+          {...register("email",{required:true})}    
         />
         {errors.email && <p style={{color:"red"}}>{errors.email?.message}</p>}
-
         <label htmlFor="username">Username</label>
         <input
           type="text"
           name="username"
           id="username"
           placeholder="Username"
-          {...register("username")}    
+          {...register("username",{required:true})}    
         />
         {errors.username && <p style={{color:"red"}}>{errors.username?.message}</p>}
-
         <label htmlFor="Password">Password</label>
         <input
           type="text"
           name="password"
           id="password"
           placeholder="Password"
-          {...register("password")}
+          {...register("password",{required:true})}
         />
          {errors.password && <p style={{color:"red"}}>{errors.password?.message}</p>}
-
         <label htmlFor="confirmPass">ConfirmPass</label>
         <input
           type="text"
           name="confirmPass"
           id="confirmPass"
           placeholder="ConfirmPass"
-          {...register("confirmPass")}
+          {...register("confirmPass",{required:true})}
         />
          {errors.confirmPass && <p style={{color:"red"}}>{errors.confirmPass?.message}</p>}
          <Link to="/user/login">

@@ -1235,84 +1235,6 @@
       "title": "them san pham C",
       "price": "100",
       "id": 34
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111111",
-      "id": 35
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111",
-      "id": 36
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111",
-      "id": 37
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111",
-      "id": 38
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111",
-      "id": 39
-    },
-    {
-      "title": "11",
-      "price": "111",
-      "description": "1111",
-      "id": 40
-    },
-    {
-      "title": "11",
-      "price": "11",
-      "description": "111",
-      "id": 41
-    },
-    {
-      "title": "1",
-      "price": "11",
-      "description": "11",
-      "id": 42
-    },
-    {
-      "title": "111111",
-      "price": 111,
-      "description": "1111",
-      "id": 43
-    },
-    {
-      "title": "Trunssss",
-      "price": 11111111,
-      "description": "11111",
-      "id": 44
-    },
-    {
-      "title": "1111111111",
-      "price": 11111111,
-      "description": "11111111",
-      "id": 45
-    },
-    {
-      "title": "ádasdas",
-      "price": 4,
-      "description": "1111",
-      "id": 46
-    },
-    {
-      "title": "Watermelon",
-      "price": 5,
-      "description": "12345678",
-      "id": 47
     }
   ],
   "users": [
@@ -1350,6 +1272,52 @@
       "username": "giang123",
       "confirmPass": "123456",
       "id": 5
+    },
+    {
+      "email": "giangnguyen123@gmail.com",
+      "password": "$2a$10$U1dN.0gDVGPwC/67p58TK.I19q9yrogxcYW8jwGCSl0PBKk6i/abq",
+      "username": "giangnguyen123",
+      "confirmPass": "1111111",
+      "id": 6
+    },
+    {
+      "email": "giangnguyen12345@gmail.com",
+      "password": "$2a$10$9G6BnLZAFNs90LDsM2BuGepJwDXIQsFl.P.qgAVhm8fMOamlloppG",
+      "username": "giang123",
+      "confirmPass": "111111111111111111111",
+      "id": 7
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$T9T48QG9jFOLIianeotqG.CXxdKKGcKfqZVdM5/oKznsVz/ewg6GG",
+      "username": "giang123",
+      "confirmPass": "123456",
+      "id": 8,
+      "role": "admin"
+    },
+    {
+      "email": "admin123@gmail.com",
+      "password": "$2a$10$hxobqow5Fc0TqtqtP8TMI.gXQa92Od/gFLvGlD3kJO7EZPo.lYhwO",
+      "username": "giang123",
+      "confirmPass": "123456",
+      "role": "user",
+      "id": 9
+    },
+    {
+      "email": "admin22@gmail.com",
+      "password": "$2a$10$ZLT5qjBCYKtwaZdnqf43Z.LwTQi.8Uf3criKy9dfx71hwL6W.VITq",
+      "username": "giang123",
+      "confirmPass": "123456",
+      "id": 10
+    },
+    {
+      "email": "admin11111@gmail.com",
+      "password": "$2a$10$5FBFarAg64VaNhVg6ycBp.j84PR27OFkUKIDbV5BAQiRuIIMzLVci",
+      "username": "giang123",
+      "confirmPass": "123456",
+      "id": 11,
+      "role": "admin"
+    
     }
   ]
 }

@@ -18,7 +18,6 @@ const ProductForm = () => {
   } = useForm({
     resolver: zodResolver(schemaProduct),
   });
-
   useEffect(() => {
     if (id) {
       (async () => {
@@ -27,7 +26,6 @@ const ProductForm = () => {
       })();
     }
   }, [id, reset]);
-
   const handleAddProduct = async (product) => {
     console.log(product);
     let confirmMessage = "";
@@ -48,13 +46,11 @@ const ProductForm = () => {
       reset(); 
     }
   };
-
   const handleReset = () => {
     if (confirm("Bạn có chắc chắn muốn reset các trường?")) {
       reset();
     }
   };
-
   return (
     <div className="form-update">
       <h1 className="header-update">{id ? "Cập nhật" : "Thêm mới"} sản phẩm</h1>
@@ -68,7 +64,6 @@ const ProductForm = () => {
           {...register("title", { required: true })}
         />
         {errors.title && <p style={{color:"red"}}>{errors.title?.message}</p>}
-
         <label htmlFor="price">Price</label>
         <input
           type="number"
@@ -87,7 +82,6 @@ const ProductForm = () => {
           {...register("description", { required: true })}
           rows="10"
         ></textarea>
-
         <div className="button-group">
           <button style={{ backgroundColor: "green" }} onClick={handleSubmit}>
             {id ? "Update" : "Add"}
