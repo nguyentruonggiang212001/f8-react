@@ -1,15 +1,16 @@
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../index.css";
-import { createNew, getById, updateById, } from "../services";
+import { createNew, getById, updateById } from "../services";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { schemaProduct } from "../schemas/productShema";
-
+import useProducts from "../hook/useProducts";
 
 const ProductForm = () => {
   const { id } = useParams();
-  const nav = useNavigate(); 
+  const nav = useNavigate();
+  const { createProduct, updateProduct } = useProducts();
   const {
     register,
     formState: { errors },
@@ -18,34 +19,30 @@ const ProductForm = () => {
   } = useForm({
     resolver: zodResolver(schemaProduct),
   });
+
   useEffect(() => {
-    if (id) {
+    id &&
       (async () => {
         const data = await getById("/products", id);
         reset(data);
       })();
-    }
-  }, [id, reset]);
+  }, [id]);
+
   const handleAddProduct = async (product) => {
-    console.log(product);
-    let confirmMessage = "";
-    if (id) {
-      // logic update
-      confirmMessage = "Bạn có chắc chắn muốn cập nhật sản phẩm này?";
-      const data = await updateById("/products", id, product);
-      console.log(data);
-    } else {
-      // logic add
-      confirmMessage = "Bạn có chắc chắn muốn thêm mới sản phẩm này?";
-      const data = await createNew("/products", product);
-      console.log(data);
-    }
+    const action = id ? "cập nhật" : "thêm";
+    const confirmMessage = `Bạn có chắc chắn muốn ${action} sản phẩm này không?`;
+
     if (confirm(confirmMessage)) {
+      if (id) {
+        await updateProduct(id, product);
+      } else {
+        await createProduct(product);
+      }
+      reset();
       nav("/admin/products");
-    } else {
-      reset(); 
     }
   };
+
   const handleReset = () => {
     if (confirm("Bạn có chắc chắn muốn reset các trường?")) {
       reset();
@@ -63,7 +60,9 @@ const ProductForm = () => {
           placeholder="Title"
           {...register("title", { required: true })}
         />
-        {errors.title && <p style={{color:"red"}}>{errors.title?.message}</p>}
+        {errors.title && (
+          <p style={{ color: "red" }}>{errors.title?.message}</p>
+        )}
         <label htmlFor="price">Price</label>
         <input
           type="number"
@@ -72,7 +71,9 @@ const ProductForm = () => {
           placeholder="Price"
           {...register("price", { required: true, valueAsNumber: true })}
         />
-        {errors.price && <p style={{color:"red"}}>{errors.price?.message}</p>}
+        {errors.price && (
+          <p style={{ color: "red" }}>{errors.price?.message}</p>
+        )}
 
         <label>Description</label>
         <textarea
@@ -86,10 +87,7 @@ const ProductForm = () => {
           <button style={{ backgroundColor: "green" }} onClick={handleSubmit}>
             {id ? "Update" : "Add"}
           </button>{" "}
-          <button
-            style={{ backgroundColor: "gray" }}
-            onClick={handleReset}
-          >
+          <button style={{ backgroundColor: "gray" }} onClick={handleReset}>
             Reset
           </button>
         </div>
