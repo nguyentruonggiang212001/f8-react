@@ -1,53 +1,81 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProduct } from "./action/productAction";
 import "./App.module.css";
-// import ShopPage from './pages/Shop.jsx';
-// import { Routes, Route } from 'react-router-dom';
-import HomePage from "./pages/HomePage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
-// import ServicesPage from './pages/Services.jsx';
-// import ContactPage from './pages/Contact.jsx';
-// import ProductDetailPage from './pages/ProductDetailPage';
-import ProductsTable from "./admin/ProductsTable.jsx";
-import DashBoardPage from "./admin/DashBoardPage.jsx";
-import ProductForm from "./admin/ProductForm.jsx";
-import User from "./user/User.jsx";
-import { RegisterForm } from "./user/RegisterForm.jsx";
-import LoginForm from "./user/loginForm.jsx";
-import { Route, Routes } from "react-router-dom";
-import AuthProvider from "./contexts/AuthContext";
-import Header from "./layout/Header/Header";
-import LayoutAdmin from "./layout/LayoutAdmin";
-// import ProtectedRoute from './layout/ProtectedRoute';
-// import { SuperAdmin } from './admin/SuperAdmin';
-// import {ProductContext} from "./contexts/ProductContent"
-import Footer from "./layout/footer/Footer";
-import ProductProvider, { ProductContext } from "./contexts/ProductContent.jsx";
+import instance from "./services/index";
+import { Link } from "react-router-dom";
 
 function App() {
+  const { products } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await instance.get("/products");
+      dispatch(setProduct(data));
+    })();
+  }, [dispatch]);
+
+  const handleRemove = async (id) => {
+    if (confirm("Are You Delete")) {
+      try {
+        await instance.delete(`/products/${id}`);
+        dispatch({ type: "REMOVE_PRODUCT", payload: id });
+      } catch (error) {
+        console.error("Error removing product:", error.message);
+      }
+    }
+  };
   return (
     <>
-      <AuthProvider>
-        <Header />
-        <ProductProvider>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            {/* Lien quan den Auth */}
-            <Route path="/user" element={<User />}>
-              <Route path="login" element={<LoginForm />} />
-              <Route path="register" element={<RegisterForm />} />
-              {/* Lien quan den Admin */}
-            </Route>
-            <Route path="/admin" element={<LayoutAdmin />}>
-              <Route element={<DashBoardPage />}></Route>
-              <Route index path="products" element={<ProductsTable />} />
-              <Route path="products/add" element={<ProductForm />} />
-              <Route path="products/update/:id" element={<ProductForm />} />
-            </Route>
+      {/* <button className="btn btn-primary" onClick={handleIncrement}>
+        Increment
+      </button> */}
 
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </ProductProvider>
-        <Footer />
-      </AuthProvider>
+      {/* <button className="btn btn-primary" onClick={handleDecrement}>
+        Decrement
+      </button> */}
+      <h2 style={{ marginTop: "100px" }}>Quản Lý Sản Phẩm</h2>
+      <div>
+        <Link to={`/products/add`}>
+          <button>Add new product</button>
+        </Link>
+      </div>
+      <table className="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>TITLE</th>
+            <th>PRICE</th>
+            <th>DESCRIPTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products &&
+            products.map((item) => (
+              <tr key={item.id}>
+                <td>{item.id}</td>
+                <td>{item.title}</td>
+                <td>{item.price}</td>
+                <td>{item.description}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => handleRemove(item.id)}
+                  >
+                    Remove
+                  </button>
+                  <Link
+                    className="btn btn-warning"
+                    to={`/products/update/${item.id}`}
+                  >
+                    Update
+                  </Link>
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
     </>
   );
 }
