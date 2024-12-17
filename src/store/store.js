@@ -1,7 +1,10 @@
-import { legacy_createStore as createStore } from "redux";
-import { countReducer } from "./../reducers/countReducers";
-import rootReducer from "../reducers";
+import { configureStore } from "@reduxjs/toolkit";
+import productReducer from "../features/products/productSlice";
 
-// export const store = createStore(countReducer);
+const store = configureStore({
+  reducer: {
+    products: productReducer,
+  },
+});
 
-export const store = createStore(rootReducer);
+export default store;

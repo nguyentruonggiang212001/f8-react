@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
-import { productReducer } from "./productReducers";
-import { countReducer } from "./countReducers";
+import productReducer from "./../features/products/productSlice";
 
 const rootReducer = combineReducers({
   products: productReducer,
-  count: countReducer,
 });
 
 export default rootReducer;
