@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import useDebounce from "./hook/debounce";
 
 const SearchComponent = () => {
-  const 
+  const [query, setQuery] = React.useState("");
+  const debouncedQuery = useDebounce(query, 1000);
+  useEffect(() => {
+    if (debouncedQuery) {
+      console.log("Querying for", debouncedQuery);
+    }
+  }, [debouncedQuery]);
+
   return (
     <div>
       <input

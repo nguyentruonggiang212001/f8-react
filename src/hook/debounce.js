@@ -9,15 +9,11 @@ function useDebounce(value, delay) {
     }, delay);
 
     return () => {
-      clearTimeout(handlder);
+      clearInterval(handlder);
     };
-  }, delay);
+  }, [value, delay]);
 
   return debouncedValue;
-
-  useEffect(() => {
-    const handlder = setTimeout(() => {
-      setDebouncedValue(value);
-    }, delay);
-  }, [value, delay]);
 }
+
+export default useDebounce;

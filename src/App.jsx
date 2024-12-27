@@ -1,14 +1,17 @@
 import "./App.module.css";
 
 import { Routes, Route } from "react-router-dom";
-import ProductTable from "./pages/admin/ProductTable";
+import SearchComponent from "./SearchComponent";
+import Login from "./Login";
+import ThrottleComponent from "./ThrottleComponent";
 
 function App() {
   return (
     <>
-      <Routes>
-        <Route path="/" element={<ProductTable />}></Route>
-      </Routes>
+      <SearchComponent />
+      <Login />
+      <h2>Throttling</h2>
+      <ThrottleComponent />
     </>
   );
 }
